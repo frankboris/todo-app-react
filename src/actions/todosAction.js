@@ -10,6 +10,11 @@ export const deleteTodo = (todoId) => ({
     payload: todoId
 })
 
+export const toggleTodo = (todoId) => ({
+    type: types.TOGGLE_TODO,
+    payload: todoId
+})
+
 export const updateTodo = (todo) => ({
     type: types.UPDATE_TODO,
     payload: todo

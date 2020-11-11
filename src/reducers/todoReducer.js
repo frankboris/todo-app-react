@@ -1,4 +1,4 @@
-import { ADD_TODO, UPDATE_TODO, DELETE_TODO } from '../constants/TodoActionTypes'
+import { ADD_TODO, UPDATE_TODO, DELETE_TODO, TOGGLE_TODO } from '../constants/TodoActionTypes'
 import { todos } from './todos'
 
 function nextTodoId(todos) {
@@ -21,6 +21,17 @@ const todoReducer = (state = todos, action) => {
             newTodos = [...state];
             newTodos = newTodos.filter(todo => todo.id !== action.payload);
             return newTodos;
+        case TOGGLE_TODO:
+            newTodos = [...state];
+            let pos = newTodos.findIndex(todo => todo.id === action.payload);
+            if (pos !== -1) {
+                newTodos[pos] = {
+                    ...newTodos[pos],
+                    completed: !newTodos[pos].completed
+                };
+                return newTodos;
+            }
+            break;
         case UPDATE_TODO:
             newTodos = [...state];
             let index = newTodos.findIndex(todo => todo.id === action.payload.id);

@@ -1,33 +1,27 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { deleteTodo, updateTodo } from '../actions/todosAction';
 
-function TodoItem({ todo }) {
+function TodoItem({ todo, onUpdate, onDelete, onToggle }) {
     const [editable, setEditable] = useState(false)
     let [name, setName] = useState(todo.text)
     let [checked, setChecked] = useState(todo.completed)
-    let dispatch = useDispatch();
 
     const handleEdit = () => {
         if(editable) {
             setName(todo.text)
-            dispatch(updateTodo({
+            onUpdate({
                 ...todo,
                 text: name
-            }))
+            })
         }
         setEditable(!editable)
     }
 
     const handleCompleted = () => {
         setChecked(!checked)
-        dispatch(updateTodo({
-            ...todo,
-            completed: !checked
-        }))
+        onToggle(todo.id)
     }
 
-    const handleDelete = () => dispatch(deleteTodo(todo.id))
+    const handleDelete = () => onDelete(todo.id)
 
     return (
         <div>
