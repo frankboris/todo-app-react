@@ -1,13 +1,13 @@
 import TodoInput from './components/TodoInput';
-import TodoFilter from './components/TodoFilter';
 import { TodoListContainer } from './containers/todoContainer';
+import { TodoFilterContainer } from './containers/filterContainer';
 
 function App() {
     return (
         <div className="App m-5">
             <TodoInput />
             <TodoListContainer />
-            <TodoFilter />
+            <TodoFilterContainer />
         </div>
     );
 }

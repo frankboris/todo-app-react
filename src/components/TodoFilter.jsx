@@ -1,21 +1,16 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters';
-import { appliedFilter } from '../actions/filterAction';
-import { getVisibilityFilter } from '../selectors';
 
-function TodoFilter() {
-    let dispacth = useDispatch();
-    let initialFilter = useSelector(getVisibilityFilter)
-    let [filter, setFilter] = useState(initialFilter)
+function TodoFilter({initFilter, appliedFilter}) {
+    let [filter, setFilter] = useState(initFilter)
 
     const handleChange = (e) => {
         setFilter(e.target.value)
-        dispacth(appliedFilter(e.target.value))
+        appliedFilter(e.target.value)
     }
 
     return (
-        <div>
+        <div className="text-center">
             <div className="custom-control custom-radio custom-control-inline">
                 <input checked={filter === SHOW_ALL} value={SHOW_ALL} onChange={handleChange} type="radio" id="customRadioInline1" name="customRadioInline1" className="custom-control-input" />
                 <label className="custom-control-label" htmlFor="customRadioInline1">Toutes</label>

@@ -38,7 +38,7 @@ function TodoItem({ todo, onUpdate, onDelete, onToggle }) {
                             onChange={(e) => setName(e.target.value)}
                             className="form-control col"
                             type="text" /> :
-                        <h4>{todo.text}</h4>
+                        <h4 className={checked ? 'text-strike' : ''}>{todo.text}</h4>
                     }
                 </div>
                 <button
