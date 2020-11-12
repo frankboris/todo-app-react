@@ -1,9 +1,9 @@
-import React, {useState} from "react";
-import {addTodo} from "../actions/todosAction";
-import {useDispatch} from "react-redux";
+import React, {useState} from 'react';
+import {addTodo} from '../actions/todo.action';
+import {useDispatch} from 'react-redux';
 
 function TodoInput() {
-    let [name, setName] = useState("");
+    let [name, setName] = useState('');
     let dispatch = useDispatch();
 
     const handleChange = (e) => setName(e.target.value);
@@ -11,7 +11,7 @@ function TodoInput() {
     const handleAddBtnClick = () => {
         if (name.trim()) {
             dispatch(addTodo(name));
-            setName("");
+            setName('');
         }
     };
 
@@ -20,7 +20,7 @@ function TodoInput() {
         const trimmedText = name.trim();
         if (e.which === 13 && trimmedText) {
             dispatch(addTodo(trimmedText));
-            setName("");
+            setName('');
         }
     };
 

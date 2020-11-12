@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import TodoItem from "./TodoItem";
+import React from 'react';
+import PropTypes from 'prop-types';
+import TodoItem from './TodoItem';
 
 function TodoList({todosData, deleteTodo, toggleTodo, updateTodo}) {
     return (
@@ -22,10 +22,10 @@ function TodoList({todosData, deleteTodo, toggleTodo, updateTodo}) {
 }
 
 TodoList.propTypes = {
-    todosData: PropTypes.object,
-    deleteTodo: PropTypes.func,
-    toggleTodo: PropTypes.func,
-    updateTodo: PropTypes.func
+    todosData: PropTypes.object.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
+    toggleTodo: PropTypes.func.isRequired,
+    updateTodo: PropTypes.func.isRequired
 };
 
 export default TodoList;

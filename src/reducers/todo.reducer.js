@@ -15,14 +15,14 @@ import {
     UPDATE_TODO_FAILURE,
     UPDATE_TODO_REQUEST,
     UPDATE_TODO_SUCCESS
-} from '../constants/TodoActionTypes';
+} from '../constants/todo.action.types';
 import {SHOW_ALL, TODO_TITLE_ASC} from '../constants/contants';
 
 const initialState = {
     loading: false,
     todos: [],
     current_page: 0,
-    last_page: 1,
+    hasMore: false,
     filter: {
         status: SHOW_ALL,
         order_by: TODO_TITLE_ASC,
@@ -45,7 +45,7 @@ const todoReducer = (state = initialState, action) => {
                 loading: false,
                 todos: action.payload.data,
                 current_page: action.payload.current_page,
-                last_page: action.payload.last_page,
+                hasMore: action.payload.current_page < action.payload.last_page,
                 error: ''
             };
         case FETCH_TODOS_FAILURE:

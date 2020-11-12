@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as types from '../constants/TodoActionTypes';
+import * as types from '../constants/todo.action.types';
 
 export const addTodo = (text) => {
     return (dispatch) => {
