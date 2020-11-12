@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters';
+import React, {useState} from 'react'
+import {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from '../constants/TodoActionTypes';
 
 function TodoFilter({initFilter, appliedFilter}) {
     let [filter, setFilter] = useState(initFilter)
@@ -10,18 +10,22 @@ function TodoFilter({initFilter, appliedFilter}) {
     }
 
     return (
-        <div className="text-center">
-            <div className="custom-control custom-radio custom-control-inline">
-                <input checked={filter === SHOW_ALL} value={SHOW_ALL} onChange={handleChange} type="radio" id="customRadioInline1" name="customRadioInline1" className="custom-control-input" />
-                <label className="custom-control-label" htmlFor="customRadioInline1">Toutes</label>
+        <div className="row mt-4">
+            <div className="col-md-6">
+                <div className="form-group">
+                    <label htmlFor="content">Contenu</label>
+                    <input id="content" type="text" className="form-control"/>
+                </div>
             </div>
-            <div className="custom-control custom-radio custom-control-inline">
-                <input checked={filter === SHOW_COMPLETED} value={SHOW_COMPLETED} onChange={handleChange} type="radio" id="customRadioInline2" name="customRadioInline1" className="custom-control-input" />
-                <label className="custom-control-label" htmlFor="customRadioInline2">Terminées</label>
-            </div>
-            <div className="custom-control custom-radio custom-control-inline">
-                <input checked={filter === SHOW_ACTIVE} value={SHOW_ACTIVE} onChange={handleChange} type="radio" id="customRadioInline3" name="customRadioInline1" className="custom-control-input" />
-                <label className="custom-control-label" htmlFor="customRadioInline3">Encours</label>
+            <div className="col-md-6">
+                <div className="form-group">
+                    <label htmlFor="status">Statut</label>
+                    <select value={filter} onChange={handleChange} id="status" className="form-control">
+                        <option value={SHOW_ALL}>Tous</option>
+                        <option value={SHOW_COMPLETED}>Terminés</option>
+                        <option value={SHOW_ACTIVE}>Encours</option>
+                    </select>
+                </div>
             </div>
         </div>
     )

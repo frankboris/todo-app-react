@@ -1,19 +1,21 @@
 import React from 'react'
 import TodoItem from './TodoItem'
 
-function TodoList(props) {
-    const {todos, deleteTodo, toggleTodo, updateTodo} = props;
+function TodoList({todosData, deleteTodo, toggleTodo, updateTodo}) {
     return (
-        <div className="my-4">
-            {todos.map(todo => {
-                return <TodoItem 
-                            key={todo.id}
-                            todo={todo}
-                            onDelete={deleteTodo}
-                            onToggle={toggleTodo}
-                            onUpdate={updateTodo}
-                        />
-            })}
+        <div className="mt-2 mb-4">
+            {
+                todosData.loading ? <h2>Loading</h2> :
+                todosData.todos.map(todo => {
+                    return <TodoItem
+                        key={todo.id}
+                        todo={todo}
+                        onDelete={deleteTodo}
+                        onToggle={toggleTodo}
+                        onUpdate={updateTodo}
+                    />
+                })
+            }
         </div>
     )
 }

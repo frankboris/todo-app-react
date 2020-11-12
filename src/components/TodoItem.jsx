@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 function TodoItem({ todo, onUpdate, onDelete, onToggle }) {
     const [editable, setEditable] = useState(false)
+    const [deleting, setDeleting] = useState(false)
     let [name, setName] = useState(todo.text)
     let [checked, setChecked] = useState(todo.completed)
 
@@ -21,16 +22,18 @@ function TodoItem({ todo, onUpdate, onDelete, onToggle }) {
         onToggle(todo.id)
     }
 
-    const handleDelete = () => onDelete(todo.id)
+    const handleDelete = () => {
+        setDeleting(true)
+        onDelete(todo.id)
+    }
 
     return (
-        <div>
-            <div className="row mx-2 align-items-center">
+        <div className="todo-item">
+            <div className="row mx-0 align-items-center">
                 <div className="custom-control custom-checkbox">
                     <input onChange={handleCompleted} checked={checked} type="checkbox" className="custom-control-input" id={todo.id} />
                     <label className="custom-control-label" htmlFor={todo.id}/>
                 </div>
-                <div>#{todo.id}</div>
                 <div className="col">
                     {editable ?
                         <input
@@ -47,8 +50,8 @@ function TodoItem({ todo, onUpdate, onDelete, onToggle }) {
                 >{editable ? 'Enregistrer' : 'Modifier'}</button>
                 <button
                     onClick={handleDelete}
-                    className="btn btn-danger m-2"
-                >Delete</button>
+                    className="btn btn-danger my-2"
+                >{deleting ? 'Suppresion...' : 'Supprimer'}</button>
             </div>
         </div>
     )

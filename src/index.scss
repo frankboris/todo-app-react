@@ -1,23 +1,49 @@
+$primary: #28a745;
+
 @import "~bootstrap/scss/bootstrap";
 
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
 
 label[for] {
   cursor: pointer;
 }
 
+.todo-item {
+  h4 {
+    font-size: 18px;
+    color: #737373;
+
+    &.text-strike {
+      color: #333333;
+    }
+  }
+}
+
 .text-strike {
   text-decoration: line-through;
+}
+
+.custom-control {
+  &.custom-checkbox {
+    .custom-control-label {
+      &:before, &:after, &::before, &::after {
+        width: 30px;
+        height: 30px;
+        top: -4px;
+        border-radius: 50px;
+      }
+    }
+  }
 }

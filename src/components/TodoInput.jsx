@@ -26,7 +26,7 @@ function TodoInput() {
 
     return (
         <div>
-            <div className="row m-2">
+            <div className="row m-0">
                 <input
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
@@ -35,7 +35,7 @@ function TodoInput() {
                     className="col form-control" />
                 <button
                     onClick={handleAddBtnClick}
-                    className="btn btn-primary mx-2"
+                    className="btn btn-primary ml-2"
                 >Ajouter</button>
             </div>
         </div>
