@@ -7,25 +7,29 @@ import {
     DELETE_TODO_SUCCESS,
     FETCH_TODOS_FAILURE,
     FETCH_TODOS_REQUEST,
-    FETCH_TODOS_SUCCESS,
-    SET_VISIBILITY_FILTER,
-    SHOW_ALL,
+    FETCH_TODOS_SUCCESS, SET_CONTENT_FILTER, SET_ORDER_BY_FILTER,
+    SET_STATUS_FILTER,
     TOGGLE_TODO_FAILURE,
     TOGGLE_TODO_REQUEST,
     TOGGLE_TODO_SUCCESS,
     UPDATE_TODO_FAILURE,
     UPDATE_TODO_REQUEST,
     UPDATE_TODO_SUCCESS
-} from '../constants/TodoActionTypes'
+} from '../constants/TodoActionTypes';
+import {SHOW_ALL, TODO_TITLE_ASC} from '../constants/contants';
 
 const initialState = {
     loading: false,
     todos: [],
     current_page: 0,
     last_page: 1,
-    filter: SHOW_ALL,
+    filter: {
+        status: SHOW_ALL,
+        order_by: TODO_TITLE_ASC,
+        content: ''
+    },
     error: ''
-}
+};
 
 const todoReducer = (state = initialState, action) => {
     let newTodos;
@@ -70,7 +74,8 @@ const todoReducer = (state = initialState, action) => {
             if (index !== -1) {
                 newTodos[index] = action.payload;
                 return {...state, todos: newTodos};
-            } break
+            }
+            break;
         case UPDATE_TODO_FAILURE:
             return {
                 ...state,
@@ -104,15 +109,34 @@ const todoReducer = (state = initialState, action) => {
                 ...state,
                 error: action.payload
             };
-        case SET_VISIBILITY_FILTER:
+        case SET_STATUS_FILTER:
             return {
                 ...state,
-                filter: action.filter
-            }
+                filter: {
+                    ...state.filter,
+                    status: action.filter
+                }
+            };
+        case SET_ORDER_BY_FILTER:
+            return {
+                ...state,
+                filter: {
+                    ...state.filter,
+                    order_by: action.filter
+                }
+            };
+        case SET_CONTENT_FILTER:
+            return {
+                ...state,
+                filter: {
+                    ...state.filter,
+                    content: action.filter
+                }
+            };
         default:
             return state;
     }
     return state;
-}
+};
 
 export default todoReducer;
